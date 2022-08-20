@@ -18,3 +18,13 @@
 .disableEvents{
   pointer-events: none;
 }
+
+.hbContainer{
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+}
+.hbContainer__button{
+  font-size: 20px;
+  padding: 20px;
+}

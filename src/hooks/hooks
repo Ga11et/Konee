@@ -1,0 +1,40 @@
+import { useState } from 'react'
+
+export const useCircleControls = () => {
+
+  const [left, setLeft] = useState(0)
+  const [top, setTop] = useState(0)
+  const [scale, setScale] = useState(20)
+
+  const rightButtonHandler = () => {
+    setLeft(prev => prev + scale < 20 ? prev + 1 : prev)
+  }
+  const leftButtonHandler = () => {
+    setLeft(prev => prev !== 0 ? prev - 1 : prev)
+  }
+  const topButtonHandler = () => {
+    setTop(prev => prev !== 0 ? prev - 1 : prev)
+  }
+  const bottomButtonHandler = () => {
+    setTop(prev => prev + scale !== 60 ? prev + 1 : prev)
+  }
+  const biggerButtonHandler = () => {
+    setScale(prev => prev + left !== 20 && prev + top !== 60 ? prev + 1 : prev)
+  }
+  const smallerButtonHandler = () => {
+    setScale(prev => prev !== 1 ? prev - 1 : prev)
+  }
+
+  return [
+    { left, top, scale },
+    {
+      left: leftButtonHandler,
+      right: rightButtonHandler,
+      up: topButtonHandler,
+      down: bottomButtonHandler,
+      bigger: biggerButtonHandler,
+      smaller: smallerButtonHandler
+    }
+  ]
+
+}
